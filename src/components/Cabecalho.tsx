@@ -10,20 +10,21 @@ export function Cabecalho() {
   const caminho = usePathname();
   return (
     <header
-      className="sticky top-0 z-10 text-white shadow"
-      style={{ background: "var(--cor-principal)" }}
+      className="sticky top-0 z-10 border-b-4 text-white shadow-md"
+      style={{ background: "var(--cor-principal)", borderColor: "var(--cor-madeira)" }}
     >
       <div className="mx-auto flex max-w-3xl items-center gap-3 px-4 py-3">
         {identidade.logo ? (
           <Image
             src={identidade.logo}
             alt={identidade.nome}
-            width={36}
-            height={36}
-            className="h-9 w-9 rounded-md bg-white object-contain p-0.5"
+            width={640}
+            height={347}
+            priority
+            className="h-11 w-auto"
           />
         ) : null}
-        <span className="text-lg font-bold">{identidade.nome}</span>
+        <span className="titulo text-xl font-bold leading-tight tracking-wide">{identidade.nome}</span>
       </div>
       <nav className="mx-auto flex max-w-3xl gap-1 overflow-x-auto px-2 pb-2">
         {menu.map((item) => {

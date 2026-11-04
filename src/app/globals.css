@@ -2,38 +2,84 @@
 
 /* Cores vêm de src/config/identidade.ts e são aplicadas no layout. */
 :root {
-  --cor-principal: #1f3a5f;
-  --cor-secundaria: #f4f1ea;
-  --cor-texto: #1a1a1a;
+  --cor-principal: #1e2e45;
+  --cor-secundaria: #f3eadb;
+  --cor-texto: #2b2622;
+  --cor-madeira: #8b6b4a;
+  --cor-cartao: #fffcf5;
 }
 
 @theme inline {
   --color-principal: var(--cor-principal);
   --color-secundaria: var(--cor-secundaria);
+  --color-madeira: var(--cor-madeira);
+  --color-cartao: var(--cor-cartao);
 }
 
-html,
-body {
-  background: var(--cor-secundaria);
-  color: var(--cor-texto);
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-  -webkit-tap-highlight-color: transparent;
+/* Estilo rústico: cinzas trocados por tons quentes (papel kraft, madeira).
+   Assim todas as telas ficam no mesmo clima sem mudar cada uma. */
+@theme {
+  --color-white: #fffcf5;
+  --color-neutral-50: #faf5ec;
+  --color-neutral-200: #e6d9c3;
+  --color-neutral-300: #d6c4a6;
+  --color-neutral-400: #9c8c78;
+  --color-neutral-500: #6f6152;
+  --color-neutral-600: #5e5246;
+  --color-neutral-700: #4a4037;
 }
 
-/* Botões e campos grandes, pensados para o celular. */
-.botao {
-  @apply inline-flex items-center justify-center rounded-xl px-4 py-3 text-base font-semibold text-white shadow-sm active:scale-[0.98] disabled:opacity-50;
-  background: var(--cor-principal);
+@layer base {
+  html,
+  body {
+    color: var(--cor-texto);
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Fundo bege com textura leve de papel. */
+  body {
+    background-color: var(--cor-secundaria);
+    background-image:
+      radial-gradient(rgba(139, 107, 74, 0.07) 1px, transparent 1px),
+      radial-gradient(rgba(139, 107, 74, 0.05) 1px, transparent 1px);
+    background-size: 22px 22px, 13px 13px;
+    background-position: 0 0, 7px 9px;
+  }
+
+  /* Títulos em fonte serifada clássica (já vem no celular, nada para baixar). */
+  h1,
+  h2,
+  h3,
+  .titulo {
+    font-family: Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+  }
+  h1 {
+    color: var(--cor-principal);
+  }
 }
-.botao-secundario {
-  @apply inline-flex items-center justify-center rounded-xl border px-4 py-3 text-base font-semibold shadow-sm active:scale-[0.98] disabled:opacity-50;
-  border-color: var(--cor-principal);
-  color: var(--cor-principal);
-  background: white;
-}
-.campo {
-  @apply w-full rounded-xl border border-neutral-300 bg-white px-4 py-3 text-base outline-none focus:border-neutral-500;
-}
-.cartao {
-  @apply rounded-2xl border border-neutral-200 bg-white p-4 shadow-sm;
+
+/* Ficam na camada "components" para que classes como bg-red-50 possam sobrescrever. */
+@layer components {
+  /* Botões e campos grandes, pensados para o celular. */
+  .botao {
+    @apply inline-flex items-center justify-center rounded-xl px-4 py-3 text-base font-semibold text-white shadow-sm active:scale-[0.98] disabled:opacity-50;
+    background: var(--cor-principal);
+    box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.25);
+  }
+  .botao-secundario {
+    @apply inline-flex items-center justify-center rounded-xl border-2 px-4 py-3 text-base font-semibold shadow-sm active:scale-[0.98] disabled:opacity-50;
+    border-color: var(--cor-principal);
+    color: var(--cor-principal);
+    background: var(--cor-cartao);
+  }
+  .campo {
+    @apply w-full rounded-xl border border-neutral-300 px-4 py-3 text-base outline-none focus:border-neutral-500;
+    background: var(--cor-cartao);
+  }
+  .cartao {
+    @apply rounded-2xl border border-neutral-300 p-4;
+    background: var(--cor-cartao);
+    box-shadow: 0 1px 0 rgba(139, 107, 74, 0.15), 0 2px 6px rgba(43, 38, 34, 0.06);
+  }
 }
