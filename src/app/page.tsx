@@ -39,10 +39,13 @@ export default function Inicio() {
     <div className="space-y-5">
       <section className="cartao space-y-3">
         <h1 className="text-2xl font-bold">Escala da equipe</h1>
-        <p className="text-neutral-700">Monte a escala da semana e mantenha a equipe atualizada.</p>
+        <p className="text-neutral-700">Monte a escala da semana, veja os turnos fragilizados e confira a escala com o ponto.</p>
         <div className="grid gap-3 sm:grid-cols-2">
           <Link href="/escala" className="botao">
             Escala da semana
+          </Link>
+          <Link href="/conferencia" className="botao-secundario">
+            Conferência do dia
           </Link>
           <Link href="/equipe" className="botao-secundario">
             Equipe

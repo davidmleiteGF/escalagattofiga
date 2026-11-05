@@ -37,6 +37,10 @@ create table if not exists escalas (
 );
 create index if not exists escalas_data_idx on escalas (data);
 
+-- Equipe fixa de cada funcionário (turno). Adicionada no ajuste GattoFiga (supabase/gattofiga.sql).
+alter table funcionarios
+  add column if not exists equipe_turno_id uuid references turnos (id) on delete set null;
+
 -- Regras da casa: mínimo de pessoas por turno e função
 -- dia_semana: 0 = domingo ... 6 = sábado; null = vale para todos os dias
 create table if not exists regras (
